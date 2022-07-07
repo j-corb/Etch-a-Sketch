@@ -5,12 +5,15 @@ for (i=0; i<256; i++) {
     grid.className = 'block';
     grid.classList.add(`${i}`);
     grid.textContent = `${i}`;
-    grid.addEventListener("mouseover", changer);
-
     container.appendChild(grid);
 }
 
-function changer() {
-    alert('ah');
-}
 
+
+const canvas = document.querySelectorAll('.block');
+
+canvas.forEach((block) => { 
+    block.addEventListener("mouseover", () => {
+        block.classList.toggle('colorful');
+    });
+});
