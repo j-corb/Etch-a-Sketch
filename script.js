@@ -9,8 +9,6 @@ for (i=0; i<256; i++) {
     container.appendChild(grid);
 }
 
-
-
 function sizeSelector() {
     size = Number(prompt('How many columns would you like?'));
     if (size < 101) {
@@ -22,7 +20,6 @@ function sizeSelector() {
         for (i=0; i< size**2; i++) {
             var grid = document.createElement('div');
             grid.className = 'block';
-            grid.classList.add(`${i}`);
             //grid.textContent = `${i}`;
             grid.setAttribute('style', `display: flex; min-width: ${hw}px; min-height: ${hw}px; `)
             container.appendChild(grid);
@@ -35,14 +32,16 @@ function sizeSelector() {
                 block.classList.toggle('colorful');
             });
         });
+        erase.addEventListener('click', () => {
+            canvas.forEach((block) => {
+                block.classList.remove('colorful')
+            })
+        })
+        
     } else {
         alert("Please select a number less than 101 for the sake of the computer.")
     }
 }
-
-const btn = document.querySelector('button');
-btn.addEventListener('click', sizeSelector);
-
 var canvas = document.querySelectorAll('.block');
 
 canvas.forEach((block) => { 
@@ -50,6 +49,16 @@ canvas.forEach((block) => {
         block.classList.toggle('colorful');
     });
 });
+
+const btn = document.querySelector('.chooser');
+const erase = document.querySelector('.clearer');
+btn.addEventListener('click', sizeSelector);
+erase.addEventListener('click', () => {
+    canvas.forEach((block) => {
+        block.classList.remove('colorful')
+    })
+})
+
 
 
 
