@@ -29,19 +29,50 @@ function sizeSelector() {
 
         canvas.forEach((block) => { 
             block.addEventListener("mouseover", () => {
-                block.classList.toggle('colorful');
+                block.classList.add('colorful');
             });
         });
-        erase.addEventListener('click', () => {
+        //can simplify by putting all the event listeners within the forEach and remove the nested for each ?
+        clear.addEventListener('click', () => {
             canvas.forEach((block) => {
-                block.classList.remove('colorful')
+                block.classList.remove('colorful');
             })
-        })
-        
+        })  
+        eraser.addEventListener('click', () => {
+            canvas.forEach((block) => {
+                block.addEventListener("mouseover", () => {
+                    block.classList.remove('colorful');
+                })
+            })
+        });
+        draw.addEventListener('click', () => {
+            canvas.forEach((block) => {
+                block.addEventListener("mouseover", () => {
+                    block.classList.add('colorful');
+                }) 
+            })
+        }); 
     } else {
         alert("Please select a number less than 101 for the sake of the computer.")
     }
 }
+
+function eraseIt () {
+    canvas.forEach((block) => {
+        block.addEventListener("mouseover", () => {
+            block.classList.remove('colorful');
+        })
+    })
+}
+
+function drawing () {
+    canvas.forEach((block) => {
+        block.addEventListener("mouseover", () => {
+            block.classList.add('colorful');
+        })
+    })
+}
+
 var canvas = document.querySelectorAll('.block');
 
 canvas.forEach((block) => { 
@@ -51,13 +82,18 @@ canvas.forEach((block) => {
 });
 
 const btn = document.querySelector('.chooser');
-const erase = document.querySelector('.clearer');
+const clear = document.querySelector('.clearer');
+const eraser = document.querySelector('.eraser');
+const draw = document.querySelector('.draw');
+
 btn.addEventListener('click', sizeSelector);
-erase.addEventListener('click', () => {
+clear.addEventListener('click', () => {
     canvas.forEach((block) => {
         block.classList.remove('colorful')
     })
 })
+eraser.addEventListener('click', eraseIt);
+draw.addEventListener('click', drawing);
 
 
 
