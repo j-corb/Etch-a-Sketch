@@ -11,7 +11,7 @@ for (i=0; i<256; i++) {
 
 function sizeSelector() {
     size = Number(prompt('How many columns would you like?'));
-    if (size < 101) {
+    if (size < 101 && size > 0) {
         var canvas = document.querySelectorAll('.block');
         canvas.forEach((block) => {
             block.remove();
@@ -51,9 +51,9 @@ function sizeSelector() {
                     block.classList.add('colorful');
                 }) 
             })
-        }); 
+        } ); 
     } else {
-        alert("Please select a number less than 101 for the sake of the computer.")
+        alert("Please select a valid number greater than 0 and less than 101 for the sake of the computer.")
     }
 }
 
@@ -77,7 +77,7 @@ var canvas = document.querySelectorAll('.block');
 
 canvas.forEach((block) => { 
     block.addEventListener("mouseover", () => {
-        block.classList.toggle('colorful');
+        block.classList.add('colorful');
     });
 });
 
