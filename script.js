@@ -51,7 +51,14 @@ function sizeSelector() {
                     block.classList.add('colorful');
                 }) 
             })
-        } ); 
+        }); 
+        /*color.addEventListener('click', () => {
+            canvas.forEach((block) => {
+                block.addEventListener("mouseover", () => {
+                    block.style.cssText=`background-color: ${colorList[Math.floor(Math.random() * colorList.length)]}`;
+                })
+            })
+        })*/
     } else {
         alert("Please select a valid number greater than 0 and less than 101 for the sake of the computer.")
     }
@@ -72,6 +79,17 @@ function drawing () {
         })
     })
 }
+/*colorList = ['red', 'blue', 'yellow', 'violet', 'orange', 'green', 'indigo'];
+
+function rainbows () {
+    canvas.forEach((block) => {
+        block.addEventListener("mouseover", () => {
+            block.classList.remove('colorful');
+            block.style.cssText=`background-color: ${colorList[Math.floor(Math.random() * colorList.length)]}`;
+        })
+    })
+}
+*/
 
 var canvas = document.querySelectorAll('.block');
 
@@ -85,15 +103,17 @@ const btn = document.querySelector('.chooser');
 const clear = document.querySelector('.clearer');
 const eraser = document.querySelector('.eraser');
 const draw = document.querySelector('.draw');
+const color = document.querySelector('.rainbow');
 
 btn.addEventListener('click', sizeSelector);
 clear.addEventListener('click', () => {
     canvas.forEach((block) => {
-        block.classList.remove('colorful')
+        block.classList.remove('colorful');
     })
 })
 eraser.addEventListener('click', eraseIt);
 draw.addEventListener('click', drawing);
+color.addEventListener('click', rainbows);
 
 
 
